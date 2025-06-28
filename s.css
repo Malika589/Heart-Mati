@@ -1,0 +1,101 @@
+body {
+  background: #111111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.heart {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, #ff3a7f, #ff0a6c);
+  transform: rotate(45deg);
+  position: relative;
+  box-shadow: 0 0 50px #ff006a;
+  animation: pulse 1.5s ease infinite;
+  transition: all 0.3s ease;
+}
+
+.heart:hover {
+  transform: rotate(45deg) scale(1.2);
+  box-shadow: 0 0 70px #ff006a;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, #ff3a7f, #ff0a6c);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart:before {
+  top: -50px;
+  left: 0;
+}
+
+.heart:after {
+  top: 0;
+  left: -50px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: rotate(45deg) scale(1);
+    box-shadow: 0 0 50px #ff006a;
+  }
+  50% {
+    transform: rotate(45deg) scale(1.1);
+    box-shadow: 0 0 70px #ff006a;
+  }
+  100% {
+    transform: rotate(45deg) scale(1);
+    box-shadow: 0 0 50px #ff006a;
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float 1.5s ease-out forwards;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(
+        calc(var(--random-x) * 150px - 75px),
+        calc(var(--random-y) * 150px - 75px)
+      )
+      rotate(360deg) scale(0);
+    opacity: 0;
+  }
+}
+
+.heart::before,
+.heart::after {
+  animation: glow 3s linear infinite;
+}
+
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(255, 58, 127, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 58, 127, 0.8));
+  }
+  100% {
+    filter: drop-shadow(0 0 5px rgba(255, 58, 127, 0.6));
+  }
+}
